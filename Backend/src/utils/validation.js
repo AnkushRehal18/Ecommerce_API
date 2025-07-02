@@ -13,4 +13,13 @@ const validateSignupData = (req)=>{
     }
 }
 
-module.exports = {validateSignupData}
+
+const validateEditProductData = (req)=>{
+    const allowedEditFields = ["name","descreption","price","currency","stock_quantity","is_active"];
+
+    const isEditAllowed = Object.keys(req.body).every(field => allowedEditFields(field));
+
+    return isEditAllowed;
+
+}
+module.exports = {validateSignupData ,validateEditProductData }
