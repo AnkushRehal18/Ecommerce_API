@@ -39,7 +39,7 @@ export default function ProductList() {
     const fetchSearchedProduct = async (searchTerm) => {
         try {
             const res = await axios.get(`${BaseUrl}/find/${searchTerm}`, { withCredentials: true });
-            setProducts([res.data.product]); // wrap in array to display like list
+            setProducts([res.data.product]); 
             setError('');
         } catch (err) {
             console.error(err);
@@ -76,6 +76,15 @@ export default function ProductList() {
                                 </div>
                             </div>
                         )}
+
+                        <div className="mt-4 flex gap-4">
+                            <button
+                                className="px-4 py-2 bg-green-500 text-white rounded"
+                                onClick={() => navigate(`/updateProduct/${p._id}`)}
+                            >
+                                Edit Product
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>

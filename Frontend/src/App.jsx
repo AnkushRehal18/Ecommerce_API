@@ -1,18 +1,32 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import Login from './components/Login.Jsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import ProductDetails from './components/ProductDetails';
+import ProductCreate from './components/ProductCreate';
+import ProductUpdate from './components/ProductUpdate';
 
-function App() {
+
+function AppContent() {
+  const location = useLocation();
+
   return (
-    <Router>
-      <Navbar/>
+    <>
+      {location.pathname !== '/login' && <Navbar />}
+
       <Routes>
-        
         <Route path='/login' element={<Login />} />
+
+        <Route
+          path='/createProduct'
+          element={
+            <ProtectedRoute>
+              <ProductCreate />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path='/products'
@@ -23,7 +37,6 @@ function App() {
           }
         />
 
-        {/* Product Details Route */}
         <Route
           path='/product/:id'
           element={
@@ -32,8 +45,23 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+        <Route
+          path='/updateProduct/:id'
+          element={
+            <ProtectedRoute>
+              <ProductUpdate />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

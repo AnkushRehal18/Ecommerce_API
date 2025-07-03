@@ -26,15 +26,23 @@ const Navbar = () => {
         }
     }
 
+    const handleCreateProduct= ()=>{
+        navigate("/createProduct")
+        cursor(pointer)
+    }
+
+    const handleHomeClick = ()=>{
+        navigate("/products")
+        cursor(pointer)
+    }
     return (
         <div className="navbar bg-blue-300 shadow-sm px-6 flex justify-between items-center h-[70px]">
             
-            {/* Left side - Logo */}
-            <div className="flex items-center">
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+            <div className="flex items-center gap-4">
+                <a className="btn btn-ghost text-xl" onClick={handleHomeClick}>Home</a>
+                <a className="btn btn-ghost text-xl" onClick={handleCreateProduct}>Create Product</a>
             </div>
 
-            {/* Right side - Search */}
             <div className="flex items-center gap-4">
                 
                 <input
