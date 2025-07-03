@@ -66,7 +66,7 @@ Frontend runs on: `http://localhost:5173`
 # Start Backend
 cd backend
 npm install
-npm start
+npm run dev
 
 # Start Frontend (in a new terminal)
 cd frontend
